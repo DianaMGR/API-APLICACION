@@ -1,0 +1,12 @@
+{
+  "name": "apli_ventas",
+  "version": "1",
+  "main": "index.js",
+  "repository": "https://github.com/DianaMGR/API-APLICACION.git",
+  "author": "DianaMGR <dianagr2005@hotmail.com>",
+  "license": "MIT",
+  "type": "module",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
