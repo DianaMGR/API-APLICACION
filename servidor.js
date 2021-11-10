@@ -2,7 +2,11 @@ import Express from 'express';
 import { MongoClient, ObjectId } from 'mongodb';
 import Cors from 'cors';
 import { ObjectID } from 'bson';
-const stringConexion = 'mongodb+srv://DianaGonzalez:simon0304@proyectoventas.cmbcl.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+import dotenv from 'dotenv';
+
+dotenv.config({path:'./.env'});
+
+const stringConexion = process.env.DATABASE_URL;
 
 
 
@@ -101,8 +105,8 @@ const main = () => {
         }
     baseDeDatos = db.db('Concesionario');  
     console.log("conexion exitosa"); 
-    return app.listen(5000, () => {
-    console.log('escuchando puerto 5050');
+    return app.listen(process.env.PORT, () => {
+        console.log(`corriendo en el puerto: ${process.env.PORT}`);
     });
 });
 
