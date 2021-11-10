@@ -1,5 +1,5 @@
 import Express from 'express';
-import { conectarBD } from './DB/db';
+import { conectarBD } from './DB/db.js';
 import Cors from 'cors';
 import { ObjectID } from 'bson';
 import dotenv from 'dotenv';
