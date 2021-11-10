@@ -1,21 +1,9 @@
 import Express from 'express';
-import { MongoClient, ObjectId } from 'mongodb';
+import { conectarBD } from './DB/db';
 import Cors from 'cors';
 import { ObjectID } from 'bson';
 import dotenv from 'dotenv';
-
-dotenv.config({path:'./.env'});
-
-const stringConexion = process.env.DATABASE_URL;
-
-
-
-const client = new MongoClient(stringConexion,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-});
-let baseDeDatos;
-const app = Express();
+dotenv.config({path:'./.env'});const app = Express();
 app.use(Express.json());
 app.use(Cors());
 
@@ -94,21 +82,10 @@ app.patch('/vehiculos/editar', (req, res) => {
              }
          });
 });
-    
-     
-const main = () => {
-    client.connect((err,db) => {
-        if(err){
-            console.error("error conectando con la BD");
-            return 'error';
-           
-        }
-    baseDeDatos = db.db('Concesionario');  
-    console.log("conexion exitosa"); 
+    const main = () => {
     return app.listen(process.env.PORT, () => {
-        console.log(`corriendo en el puerto: ${process.env.PORT}`);
+    console.log(`corriendo en el puerto: ${process.env.PORT}`);
     });
-});
-
 };
-main();
+
+conectarBD (main);
