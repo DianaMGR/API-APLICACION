@@ -1,6 +1,7 @@
 import { MongoClient,  } from 'mongodb';
 import dotenv from 'dotenv';
 
+
 dotenv.config({path:'./.env'});
 const stringConexion = process.env.DATABASE_URL; 
 const client = new MongoClient(stringConexion,{
@@ -24,7 +25,10 @@ const conectarBD = (callback) => {
     });
 };
 
-export {conectarBD};
+const getDB = () => {
+    return baseDeDatos;
+};
+export {conectarBD, getDB};
 
 
 
