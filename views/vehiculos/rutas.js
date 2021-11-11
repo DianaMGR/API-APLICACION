@@ -1,6 +1,6 @@
 import Express from 'express';
-import { queryAllvehicles, crearVehiculo } from '../../controllers/vehiculos/controllers.js';
-import { getDB } from '../../DB/db.js';
+import { queryAllvehicles, crearVehiculo, editarvehiculo, eliminar } from '../../controllers/vehiculos/controllers.js';
+
 
 const rutasvehiculo = Express.Router();
 
@@ -23,43 +23,10 @@ crearVehiculo(req.body, genericcallback(res));
 });
 
 rutasvehiculo.route('/vehiculos/eliminar').delete((req, res) =>{
-    const filtrovehiculo ={_id: new ObjectID(req.body.id)};
-    const baseDeDatos = getDB();
-    baseDeDatos.collection('vehiculo').deleteOne(filtrovehiculo,(err,result) =>{
-        if(err) {
-            console.error(err);
-            res.sendStatus(500);
-        }
-        else{
-            res.sendStatus(200);
-
-        }
-    });
+   eliminar(req.body.id, genericcallback(res));
 });
 
-   // rutasvehiculo.route('/vehiculos/editar').path((req, res) => {
-     //   const editar = req.body;
-       // console.log(editar);
-        //const filtrovehiculo = { _id: new ObjectId(editar.id) };
-        //delete editar.id;
-        //const operacion = {
-          //  $set: editar,
-            
-        //};
-        //const baseDeDatos = getDB();
-        //baseDeDatos.collection('vehiculo').findOneAndUpdate(filtrovehiculo, operacion,
-          //  {upsert: true, returnOriginal: true},(err, result) => {
-            //    if (err) {
-              //      console.error('error actualizando el vehiculo: ', err);
-                //    res.sendStatus(500);
-                //}
-                //else {
-                  //  console.log('Actualizacion exitosa');
-                    //res.sendStatus(200);
-                //}
-            //});
-    //
-
-
-
-export default rutasvehiculo;
+   rutasvehiculo.route('/vehiculos/editar').patch((req, res) => {
+       editarvehiculo(req.body, genericcallback(res))
+            });
+    export default rutasvehiculo;
