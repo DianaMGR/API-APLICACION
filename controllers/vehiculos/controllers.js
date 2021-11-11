@@ -5,7 +5,10 @@ const queryAllvehicles = async (callback)=>{
     await baseDeDatos.collection("vehiculo").find().limit(50).toArray(callback);
 };
 
-
+const consultarvehiculo = async (id, callback)=>{
+    const baseDeDatos = getDB(); 
+    await baseDeDatos.collection("vehiculo").findOne({ _id: new ObjectId(id) }, callback);
+};
 const crearVehiculo = async (datosvehiculo, callback) => {
             if(
                 Object.keys(datosvehiculo).includes('name') &&
@@ -19,9 +22,9 @@ const crearVehiculo = async (datosvehiculo, callback) => {
             } 
         };
 
-const editarvehiculo = async (editar, callback) =>{
-   const filtrovehiculo = { _id: new ObjectId(editar.id) };
-    delete editar.id;
+const editarvehiculo = async (id, editar, callback) =>{
+   const filtrovehiculo = { _id: new ObjectId(id) };
+    
     const operacion = {
   $set: editar,
         
@@ -39,4 +42,4 @@ const eliminar = async (id,callback) =>{
        
         
 }; 
-export { queryAllvehicles, crearVehiculo,editarvehiculo,eliminar };
+export { queryAllvehicles, consultarvehiculo,crearVehiculo,editarvehiculo,eliminar };
