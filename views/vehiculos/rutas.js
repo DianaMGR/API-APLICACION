@@ -22,11 +22,11 @@ rutasvehiculo.route('/vehiculos/nuevo').post((req, res) => {
 crearVehiculo(req.body, genericcallback(res));    
 });
 
-rutasvehiculo.route('/vehiculos/eliminar').delete((req, res) =>{
-   eliminar(req.body.id, genericcallback(res));
+rutasvehiculo.route('/vehiculos/:id').delete((req, res) =>{
+   eliminar(req.params.id, genericcallback(res));
 });
 
-   rutasvehiculo.route('/vehiculos/editar').patch((req, res) => {
-       editarvehiculo(req.body, genericcallback(res))
+   rutasvehiculo.route('/vehiculos/:id').patch((req, res) => {
+       editarvehiculo(req.params.id, req.body, genericcallback(res))
             });
     export default rutasvehiculo;
