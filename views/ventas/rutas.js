@@ -1,5 +1,5 @@
 import Express from 'express';
-import { queryAllventa, crearventa, editarventa, eliminar,consultarventa } from '../../controllers/ventas/controllers.js';
+import { queryAllventas, crearventa, editarventa, eliminar,consultarventa } from '../../controllers/ventas/controllers.js';
 
 
 const rutasventa = Express.Router();
@@ -15,7 +15,7 @@ const genericcallback =(res) => (err, result)=>{
             };
 rutasventa.route('/ventas').get((req, res)=> {
     console.log('get en la ruta /ventas');
-    queryAllventa(genericcallback(res));
+    queryAllventas(genericcallback(res));
     });
 
 rutasventa.route('/ventas/:id').get((req, res)=> {
