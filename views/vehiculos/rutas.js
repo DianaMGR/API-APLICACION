@@ -7,8 +7,8 @@ const rutasvehiculo = Express.Router();
 const genericcallback =(res) => (err, result)=>{
        
             if (err){
-                
-                res.status(500).send("error consultando vehiculos");
+            console.log('error', error);    
+            res.status(500).json({error:err});
             }else{
                 res.json(result);
              }   
@@ -32,6 +32,6 @@ rutasvehiculo.route('/vehiculos/:id').delete((req, res) =>{
 });
 
    rutasvehiculo.route('/vehiculos/:id').patch((req, res) => {
-       editarvehiculo(req.params.id, req.body, genericcallback(res))
+       editarvehiculo(req.params.id, req.body, genericcallback(res));
             });
     export default rutasvehiculo;

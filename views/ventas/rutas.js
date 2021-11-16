@@ -1,5 +1,9 @@
 import Express from 'express';
-import { queryAllventas, crearventa, editarventa, eliminar,consultarventa } from '../../controllers/ventas/controllers.js';
+import { queryAllventas, 
+    crearventa, 
+    editarventa, 
+    eliminar,
+    consultarventa } from '../../controllers/ventas/controllers.js';
 
 
 const rutasventa = Express.Router();
@@ -27,11 +31,11 @@ rutasventa.route('/ventas/nuevo').post((req, res) => {
 crearventa(req.body, genericcallback(res));    
 });
 
-rutasventa.route('/ventas/:id').delete((req, res) =>{
-   eliminar(req.params.id, genericcallback(res));
-});
-
-   rutasventa.route('/ventas/:id').patch((req, res) => {
+rutasventa.route('/ventas/:id').patch((req, res) => {
        editarventa(req.params.id, req.body, genericcallback(res))
             });
-    export default rutasventa;
+rutasventa.route('/ventas/:id').delete((req, res) =>{
+eliminar(req.params.id, genericcallback(res));
+});
+                        
+export default rutasventa;

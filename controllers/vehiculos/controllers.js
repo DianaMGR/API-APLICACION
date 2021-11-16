@@ -26,13 +26,15 @@ const editarvehiculo = async (id, editar, callback) =>{
    const filtrovehiculo = { _id: new ObjectId(id) };
     
     const operacion = {
-  $set: editar,
+    $set: editar,
         
     };
     const baseDeDatos = getDB();
-   await  baseDeDatos.collection('vehiculo').findOneAndUpdate(filtrovehiculo, operacion,
+   await  baseDeDatos
+   .collection('vehiculo')
+   .findOneAndUpdate(filtrovehiculo, operacion,
         {upsert: true, returnOriginal: true},callback);
-            
+    
     
     };       
 const eliminar = async (id,callback) =>{
